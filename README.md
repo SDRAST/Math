@@ -1,1 +1,1 @@
-Functions and classes to support special mathematical operations.
+Python functions and classes to support special mathematical operations.
