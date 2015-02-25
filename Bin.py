@@ -11,13 +11,19 @@ Example::
  In [3]: "%x" % B.setbit(0,12)
  Out[3]: '1000'
 """
+import logging
+
+module_logger = logging.getLogger(__name__)
 
 def setbit(word,bit):
   """
   set bit in word to 1
   """
   bitvalue = 2**bit
-  return word | bitvalue
+  #module_logger.debug("bit value = %d", bitvalue)
+  new = word | bitvalue
+  #module_logger.debug("new word = %d", new)
+  return new
 
 def clrbit(word,bit):
   """

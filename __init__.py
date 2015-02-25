@@ -62,7 +62,7 @@ def scaled_gaussian(x,mean,fwhm):
     stdev = fwhm/2./sqrt(2*log(2))
     return normalized_gaussian(x,mean,stdev)
 
-def decimal_to_binary(integer,nbits,grouped=0):
+def decimal_to_binary(integer,nbits=8,grouped=0):
     """Converts integer to binary string of length nbits, sign bit and
     then m.s.b. on the left.  Negative numbers are twos-complements, i.e.,
     bitwise complement + 1."""
