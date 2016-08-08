@@ -55,8 +55,11 @@ travelling_salesman.pdf explains them in an example
 
 http://www.physics.rutgers.edu/~haule/681/MC.pdf
 """
+import logging
 from scipy import exp, rand, zeros
-    
+
+logger = logging.getLogger(__name__)
+   
 def anneal(R, Distance, maxTsteps=100, Tstart=0.2, fCool=0.9, Preverse=0.5):
     """
     Approximate the shortest path for visiting all cities
@@ -71,33 +74,35 @@ def anneal(R, Distance, maxTsteps=100, Tstart=0.2, fCool=0.9, Preverse=0.5):
     
     @param plotter : optional function for plotting nodes and edges
     @type  plotter : function
-    """
-    def transpt(city, n):
-      nct = len(city)
     
-      newcity=[]
+    @return: tuple of list, list of lists, float
+    """
+    def transpt(nodes, n):
+      nct = len(nodes)
+    
+      newnodes=[]
       # Segment in the range n[0]...n[1]
       for j in range( (n[1]-n[0])%nct + 1):
-        newcity.append(city[ (j+n[0])%nct ])
+        newnodes.append(nodes[ (j+n[0])%nct ])
       # is followed by segment n[5]...n[2]
       for j in range( (n[2]-n[5])%nct + 1):
-        newcity.append(city[ (j+n[5])%nct ])
+        newnodes.append(nodes[ (j+n[5])%nct ])
       # is followed by segment n[3]...n[4]
       for j in range( (n[4]-n[3])%nct + 1):
-        newcity.append(city[ (j+n[3])%nct ])
-      return newcity
+        newnodes.append(nodes[ (j+n[3])%nct ])
+      return newnodes
     
-    def reverse(city, n):
+    def reverse(nodes, n):
       """
       Switches the positions of two nodes
       
-      @param city : a list of node numbers
-      @type  city : list of int
+      @param nodes : a list of node numbers
+      @type  nodes : list of int
       
       @param n : a pair of nodes
       @type  n : list of lists of int
       """
-      nct = len(city)
+      nct = len(nodes)
       nn = (1+ ((n[1]-n[0]) % nct))/2 # half the length of the segment to be reversed
       # the segment is reversed in the following way 
       # n[0]<->n[1], n[0]+1<->n[1]-1, n[0]+2<->n[1]-2,...
@@ -106,31 +111,31 @@ def anneal(R, Distance, maxTsteps=100, Tstart=0.2, fCool=0.9, Preverse=0.5):
       for j in range(nn):
          k = (n[0]+j) % nct
          l = (n[1]-j) % nct
-         (city[k],city[l]) = (city[l],city[k])  # swap
+         (nodes[k],nodes[l]) = (nodes[l],nodes[k])  # swap
 
-    def TotalDistance(city, R):
+    def TotalDistance(nodes, R):
       """
       Gets the total distance between nodes in a list
       
-      @param city : a list of node numbers
-      @type  city : list of int
+      @param nodes : a list of node numbers
+      @type  nodes : list of int
       
       @param R : an array of node coordinates
       @type  R : numpy array of floats
       """
       dist=0
-      for i in range(len(city)-1):
-        dist += Distance(R[city[i]],R[city[i+1]])
-      dist += Distance(R[city[-1]],R[city[0]])
+      for i in range(len(nodes)-1):
+        dist += Distance(R[nodes[i]],R[nodes[i+1]])
+      dist += Distance(R[nodes[-1]],R[nodes[0]])
       return dist
 
     # The index table -- the order the cities are visited.
-    ncity = len(R)
-    city = range(ncity)
-    maxSteps = 100*ncity     # Number of steps at constant temperature
-    maxAccepted = 10*ncity   # Number of accepted steps at constant temperature
+    num_nodes = len(R)
+    nodes = range(num_nodes)
+    maxSteps = 100*num_nodes     # Number of steps at constant temperature
+    maxAccepted = 10*num_nodes   # Number of accepted steps at constant temperature
     # Distance of the travel at the beginning
-    dist = TotalDistance(city, R)
+    dist = TotalDistance(nodes, R)
 
     # Stores points of a move
     n = zeros(6, dtype=int)
@@ -145,7 +150,7 @@ def anneal(R, Distance, maxTsteps=100, Tstart=0.2, fCool=0.9, Preverse=0.5):
             
             while True: # Will find two random cities sufficiently close by
                 # Two cities n[0] and n[1] are choosen at random
-                n[0] = int((nct)*rand())     # select one city
+                n[0] = int((nct)*rand())     # select one city at random
                 n[1] = int((nct-1)*rand())   # select another city, but not the same
                 if (n[1] >= n[0]): n[1] += 1   #
                 if (n[1] < n[0]): (n[0],n[1]) = (n[1],n[0]) # swap, because it must be: n[0]<n[1]
@@ -159,16 +164,16 @@ def anneal(R, Distance, maxTsteps=100, Tstart=0.2, fCool=0.9, Preverse=0.5):
             
             if Preverse > rand(): 
                 # Here we reverse a segment
-                # What would be the cost to reverse the path between city[n[0]]-city[n[1]]?
-                de = Distance(R[city[n[2]]], R[city[n[1]]]) + \
-                     Distance(R[city[n[3]]], R[city[n[0]]]) - \
-                     Distance(R[city[n[2]]], R[city[n[0]]]) - \
-                     Distance(R[city[n[3]]], R[city[n[1]]])
+                # What would be the cost to reverse the path between nodes[n[0]]-nodes[n[1]]?
+                de = Distance(R[nodes[n[2]]], R[nodes[n[1]]]) + \
+                     Distance(R[nodes[n[3]]], R[nodes[n[0]]]) - \
+                     Distance(R[nodes[n[2]]], R[nodes[n[0]]]) - \
+                     Distance(R[nodes[n[3]]], R[nodes[n[1]]])
                 
                 if de<0 or exp(-de/T)>rand(): # Metropolis
                     accepted += 1
                     dist += de
-                    reverse(city, n)
+                    reverse(nodes, n)
             else:
                 # Here we transpose a segment
                 nc = (n[1]+1+ int(rand()*(nn-1)))%nct  # Another point outside n[0],n[1] segment.
@@ -176,24 +181,26 @@ def anneal(R, Distance, maxTsteps=100, Tstart=0.2, fCool=0.9, Preverse=0.5):
                 n[5] = (nc+1) % nct
         
                 # Cost to transpose a segment
-                de = -Distance(R[city[n[1]]],R[city[n[3]]]) - \
-                      Distance(R[city[n[0]]],R[city[n[2]]]) - \
-                      Distance(R[city[n[4]]],R[city[n[5]]])
-                de += Distance(R[city[n[0]]],R[city[n[4]]]) + \
-                      Distance(R[city[n[1]]],R[city[n[5]]]) + \
-                      Distance(R[city[n[2]]],R[city[n[3]]])
+                de = -Distance(R[nodes[n[1]]],R[nodes[n[3]]]) - \
+                      Distance(R[nodes[n[0]]],R[nodes[n[2]]]) - \
+                      Distance(R[nodes[n[4]]],R[nodes[n[5]]])
+                de += Distance(R[nodes[n[0]]],R[nodes[n[4]]]) + \
+                      Distance(R[nodes[n[1]]],R[nodes[n[5]]]) + \
+                      Distance(R[nodes[n[2]]],R[nodes[n[3]]])
                 
                 if de<0 or exp(-de/T)>rand(): # Metropolis
                     accepted += 1
                     dist += de
-                    city = transpt(city, n)
+                    nodes = transpt(nodes, n)
                     
             if accepted > maxAccepted: break
             
-        print "T=%10.5f , distance= %10.5f , accepted steps= %d" %(T, dist, accepted)
+        logger.debug("anneal: T=%10.5f, distance= %10.5f, accepted steps= %d",
+                      T, dist, accepted)
         T *= fCool               # The system is cooled down
         if accepted == 0: break  # If the path does not want to change any more, we can stop
-    return R.take(list(city),axis=0), dist
+    logger.debug("anneal: new node order: %s", list(nodes)) 
+    return list(nodes), R.take(list(nodes),axis=0), dist
     
     
     
