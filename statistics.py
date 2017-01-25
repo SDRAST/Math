@@ -30,10 +30,21 @@ def group_variance(data, n_data, n_grps):
 
 def allan_variance(data):
    """
+   Computes Allan variance
+   
+   Definition of variance::
+                               2
+            sum (sample - mean)
+     var =  --------------------
+               n_samples
+             
    Computes the variances obtained when data[] is grouped in ever larger
    groups, increasing by factors of two from groups of size two.  Returns
    two lists, the first giving the group sizes and the seconds the variances.
-   Only 2^N, where N = int(log(ndata,2)), data a used.
+   Only 2^N, where N = int(log(ndata,2)), data are used.
+   
+   A set of Gaussian noise should produce ever smaller variations by sqrt(2)
+   for the first group to the last.
    """
    ndata = len(data)
    exponent = int(math.log(ndata,2))
