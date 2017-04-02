@@ -149,7 +149,7 @@ __metaclass__ = _EuclidMetaclass
 
 ################################ Vectors ###########################
 
-class Vector2:
+class Vector2(object):
     """
     2D vector in the xy-plane.
 
@@ -543,7 +543,7 @@ class Vector2:
         return self.x * other.x + \
                self.y * other.y
 
-    def cross(self):
+    def cross(self):  
         """
         Returns a Vector rotated CW by pi/2 w.r.t. self.
         """
@@ -576,7 +576,43 @@ class Vector2:
         n = other.normalized()
         return self.dot(n)*n
 
-class Vector3:
+    def rotation(self, next):
+        """
+        Returns angle by which next is rotated to have the direction of self.
+        
+        Positive angles are CW. Negative angles are CCW. This is backwards from
+        the usual Euclidean convention. The advantage of this definition is
+        that it gives an angle direction associated with azimuth.
+        
+        If you think of it as a turn from direction 1 to direction 2, the angle
+        has the sign normally associated with a rotation in Euclidean 2D space.
+        
+        Testing::
+          In [5]: v1 =  Vector2(0.00, 2.00); v2 = Vector2(-2.00, 0.00)
+          In [6]: v1.rotation(v2)*180/pi
+          Out[6]: 90.0
+          In [7]: v3 =  Vector2(-2.00, 0.00); v4 = Vector2(0.00, 2.00)
+          In [8]: v3.rotation(v4)*180/pi
+          Out[8]: -90.0
+        In the first case we are moving from right to left and then up, which
+        is a right turn or clockwise change of direction. In the second case we
+        are moving up and then left, which is a left turn or CCW. Another::
+          In [15]: In [5]: v1 =  Vector2(1.00, 1.00); v2 = Vector2(-2.00, 0.00)
+          In [16]: In [6]: v1.rotation(v2)*180/pi
+          Out[16]: 135.0
+          In [17]: In [5]: v1 =  Vector2(1.00, 1.00); v2 = Vector2(2.00, 0.00)
+          In [18]: In [6]: v1.rotation(v2)*180/pi
+          Out[18]: -45.0
+        In the first case we are moving towards the left and then to the upper
+        right, a 135 deg CW turn. In the second case we are moving towards the
+        right and then to the upper right, a 45 CCW turn.
+        """
+        next_dir = next.normalized()
+        cosine = self.normalized().dot(next_dir)
+        sine = self.normalized().dot(next_dir.cross())
+        return math.atan2(sine, cosine)
+        
+class Vector3(object):
     """
     3D vector in XYZ Euclidean space
 
