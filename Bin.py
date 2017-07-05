@@ -172,4 +172,32 @@ def set_field(word, value, mask=255):
   value = value << leftshift
   logger.debug("set_field: shifted value: %s", bin(value))
   return new_word + value
-  
+
+# from https://www.falatic.com/index.php/108/python-and-bitwise-rotation
+# Rotate left: 0b1001 --> 0b0011
+rol = lambda val, r_bits, max_bits: \
+    (val << r_bits%max_bits) & (2**max_bits-1) | \
+    ((val & (2**max_bits-1)) >> (max_bits-(r_bits%max_bits)))
+ 
+# Rotate right: 0b1001 --> 0b1100
+ror = lambda val, r_bits, max_bits: \
+    ((val & (2**max_bits-1)) >> r_bits%max_bits) | \
+    (val << (max_bits-(r_bits%max_bits)) & (2**max_bits-1))
+
+def reverse(x, n):
+    """
+    Reverse the pattern
+    
+    from http://stackoverflow.com/questions/12681945/reversing-bits-of-python-integer
+    
+    @param x : bit pattern
+    @type  x : int
+    
+    @param n : number of bits in the pattern
+    @type  n : int
+    """
+    result = 0
+    for i in xrange(n):
+        if (x >> i) & 1: result |= 1 << (n - 1 - i)
+    return result
+
