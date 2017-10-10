@@ -12,7 +12,7 @@ def gaussian(x, mean, stdev):
   @param x : independent variable
   @type  x : float
 
-  @param mean : value of x at the peak
+  @param mean : location of the center of the gaussian
   @type  mean : float
 
   @param stdev : standard deviation
@@ -48,16 +48,16 @@ def multigaussian(x, pos, std, *args):
   @param peaks : tuples with ampl and relative pos of the individual Gaussians
   @type  peaks : list of tuples of float
   """
-  logger.debug("multigaussian: extra arguments: %s",args)
+  #logger.debug("multigaussian: extra arguments: %s",args)
   amplitude = 0
   numargs = len(args)
-  logger.debug("multigaussian: number of arguments: %d",numargs)
+  #logger.debug("multigaussian: number of arguments: %d",numargs)
   for index in range(numargs):
-    logger.debug("multigaussian: argument %d: %s",index,args[index])
+    #logger.debug("multigaussian: argument %d: %s",index,args[index])
     amp = args[index][0]
     relpos = args[index][1]
     position = pos+relpos
-    logger.debug("multigaussian: position: %f",position)
+    #logger.debug("multigaussian: position: %f",position)
     amplitude += amp*gaussian(x, position, std)
   return np.array(amplitude)
 
@@ -65,10 +65,16 @@ def MMgauss(x, pos, std, *args):
   """
   A form of 'multigauss' that curfit can use.
   
+  This is a sum of Gaussians in which the position 'pos', width (std) and 
+  amplitudes (*args) are allowed to vary. The widths of all the Gaussians
+  are equal to 'std'. The relative positions of all the Gaussians are passed
+  through a global 'other_pars'.
+  
   The arbitrary number of amplitudes of the Gaussians are passed in '*args'.
   The same number of positions for the Gaussians are defined as global to the
-  module::
+  module, e.g.::
     multigauss.other_pars = -3,-2,-1,0,1,2,3,4
+  
   
   @param x : independent variable
   @type  x : nparray of float
@@ -83,16 +89,18 @@ def MMgauss(x, pos, std, *args):
   @type  args : list or tuple of float
   """
   global other_pars
-  logger.debug("MMgauss: 'other_pars' is %s", other_pars)
+  #logger.debug("MMgauss: 'other_pars' is %s", other_pars)
   amps = args
+  logger.debug("MMgauss: amplitudes: %s", amps)
   relpos = other_pars
   if len(amps) != len(relpos):
+    logger.error("MMgauss: len(amps)=%d, len(relpos)=%d",len(amps),len(relpos))
     raise ValueError("MMgauss: amps and relpos must have the same number")
   npeaks = len(amps)
-  logger.debug("MMgauss %d peaks",npeaks)
-  logger.debug("MMgauss: amps=%s, pos=%s", amps, relpos)
+  #logger.debug("MMgauss %d peaks",npeaks)
+  #logger.debug("MMgauss: amps=%s, pos=%s", amps, relpos)
   newargs = tuple(zip(amps,relpos))
-  logger.debug("MMgauss: new arguments: %s", newargs)
+  #logger.debug("MMgauss: new arguments: %s", newargs)
   values = multigaussian(x, pos, std, *newargs)
   return values
 
