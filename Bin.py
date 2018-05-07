@@ -117,20 +117,21 @@ def get_field(word, mask=255):
   
   @return: int
   """
-  logger.debug("get_field: word: %s (%d)", bin(word), word)
+  #logger.debug("get_field: word: %s (%d)", bin(word), word)
   if type(mask) != int:
-    logger.debug("get_field: given mask: %s", mask)
+    #logger.debug("get_field: given mask: %s", mask)
     mask = field_mask(mask)
   else:
-    logger.debug("get_field: given mask: %d", mask)
-  logger.debug("get_field: using mask: %s", bin(mask))
+    #logger.debug("get_field: given mask: %d", mask)
+    pass
+  #logger.debug("get_field: using mask: %s", bin(mask))
   extracted = word & mask
-  logger.debug("get_field: extracted: %s", bin(extracted))
+  #logger.debug("get_field: extracted: %s", bin(extracted))
   maskshift = 0
   while getbit(mask, maskshift) == 0:
     maskshift += 1
   extracted = extracted >> maskshift
-  logger.debug("get_field: shifted: %s", bin(extracted))
+  #logger.debug("get_field: shifted: %s", bin(extracted))
   return extracted
 
 def set_field(word, value, mask=255):
@@ -158,19 +159,19 @@ def set_field(word, value, mask=255):
   @return: int
   """
   # clear the masked field
-  logger.debug("set_field: word:  %s (%d)", bin(word), word)
-  logger.debug("set_field: value: %s (%d)", bin(value), value)
-  logger.debug("set_field: mask:  %s (%d)", bin(mask), mask)
+  #logger.debug("set_field: word:  %s (%d)", bin(word), word)
+  #logger.debug("set_field: value: %s (%d)", bin(value), value)
+  #logger.debug("set_field: mask:  %s (%d)", bin(mask), mask)
   if type(mask) != int:
     mask = field_mask(mask)
   new_word = word & ~mask
-  logger.debug("set_field: masked word: %s (%d)", bin(new_word), new_word)
+  #logger.debug("set_field: masked word: %s (%d)", bin(new_word), new_word)
   leftshift = 0
   while getbit(mask,leftshift) == 0:
     leftshift += 1
-    logger.debug("set_field: shifting by %d", leftshift)
+    #logger.debug("set_field: shifting by %d", leftshift)
   value = value << leftshift
-  logger.debug("set_field: shifted value: %s", bin(value))
+  #logger.debug("set_field: shifted value: %s", bin(value))
   return new_word + value
 
 # from https://www.falatic.com/index.php/108/python-and-bitwise-rotation
