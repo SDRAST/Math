@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>field_mask &#8212; Math 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="get_field" href="Math.Bin.get_field.html" />
+    <link rel="prev" title="clrbit" href="Math.Bin.clrbit.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.get_field.html" title="get_field"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.clrbit.html" title="clrbit"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Math 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Math.Bin.clrbit.html"
+                        title="previous chapter">clrbit</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Math.Bin.get_field.html"
+                        title="next chapter">get_field</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Math.Bin.field_mask.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="field-mask">
+<h1>field_mask<a class="headerlink" href="#field-mask" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="Math.Bin.field_mask">
+<code class="sig-prename descclassname">Math.Bin.</code><code class="sig-name descname">field_mask</code><span class="sig-paren">(</span><em class="sig-param">bits</em>, <em class="sig-param">leftshift=0</em><span class="sig-paren">)</span><a class="headerlink" href="#Math.Bin.field_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a bit mask</p>
+<dl class="simple">
+<dt>Example::</dt><dd><p>In [2]: bin(field_mask(“5:0”))
+Out[2]: ‘0b111111’
+In [4]: bin(field_mask(“5:0”, leftshift=6))
+Out[4]: ‘0b111111000000’
+In [5]: bin(field_mask(“111111”, leftshift=6))
+Out[5]: ‘0b111111000000’
+In [6]: field_mask(“111111”, leftshift=6)
+Out[6]: 4032</p>
+</dd>
+</dl>
+<p>:param bits : mask bit pattern, like ‘111111’ or ‘0b111111’ or range ‘5:0’
+:type  bits : str</p>
+<p>:param leftshift : number of bits to move to left (to m.s.b.)
+:type  leftshift : int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.get_field.html" title="get_field"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.clrbit.html" title="clrbit"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Math 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, T. B. H. Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>
