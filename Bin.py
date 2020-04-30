@@ -89,7 +89,7 @@ def field_mask(bits, leftshift=0):
   else:
     try:
       mask_value = int(bits, 2)
-    except ValueError, details:
+    except ValueError as details:
       logger.error("%s is not a binary string", bits)
       raise ValueError(details)
   if leftshift:
@@ -198,7 +198,7 @@ def reverse(x, n):
     @type  n : int
     """
     result = 0
-    for i in xrange(n):
+    for i in range(n):
         if (x >> i) & 1: result |= 1 << (n - 1 - i)
     return result
 

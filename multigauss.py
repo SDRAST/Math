@@ -66,13 +66,14 @@ def MMgauss(x, pos, std, *args):
   A form of 'multigauss' that curfit can use.
   
   This is a sum of Gaussians in which the position 'pos', width (std) and 
-  amplitudes (*args) are allowed to vary. The widths of all the Gaussians
+  amplitudes (\*args) are allowed to vary. The widths of all the Gaussians
   are equal to 'std'. The relative positions of all the Gaussians are passed
   through a global 'other_pars'.
   
-  The arbitrary number of amplitudes of the Gaussians are passed in '*args'.
+  The arbitrary number of amplitudes of the Gaussians are passed in '\*args'.
   The same number of positions for the Gaussians are defined as global to the
   module, e.g.::
+  
     multigauss.other_pars = -3,-2,-1,0,1,2,3,4
   
   

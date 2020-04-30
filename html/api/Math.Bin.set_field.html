@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>set_field &#8212; Math 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="setbit" href="Math.Bin.setbit.html" />
+    <link rel="prev" title="ror" href="Math.Bin.ror.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.setbit.html" title="setbit"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.ror.html" title="ror"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Math 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Math.Bin.ror.html"
+                        title="previous chapter">ror</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Math.Bin.setbit.html"
+                        title="next chapter">setbit</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Math.Bin.set_field.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="set-field">
+<h1>set_field<a class="headerlink" href="#set-field" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="Math.Bin.set_field">
+<code class="sig-prename descclassname">Math.Bin.</code><code class="sig-name descname">set_field</code><span class="sig-paren">(</span><em class="sig-param">word</em>, <em class="sig-param">value</em>, <em class="sig-param">mask=255</em><span class="sig-paren">)</span><a class="headerlink" href="#Math.Bin.set_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a value into a bit field</p>
+<dl class="simple">
+<dt>Test::</dt><dd><p>In [5]: bin(set_field(int(“101010101010”,2), int(“010101”,2), mask=”11:6”))
+DEBUG:Math.Bin:set_field: word:         0b101010101010
+DEBUG:Math.Bin:set_field: value:               0b10101
+DEBUG:Math.Bin:set_field: mask:         0b111111000000
+DEBUG:Math.Bin:set_field: masked word:        0b101010
+DEBUG:Math.Bin:set_field: shifted value: 0b10101000000
+Out[5]:                                 ‘0b10101101010’</p>
+</dd>
+</dl>
+<p>:param word : word to be modified
+:type  word : int</p>
+<p>:param value : value to be inserted
+:type  value : int</p>
+<p>:param mask : bitmask; default 255 (‘0b11111111’), l.s.byte
+:type  mask : int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.setbit.html" title="setbit"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Math.Bin.ror.html" title="ror"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Math 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, T. B. H. Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

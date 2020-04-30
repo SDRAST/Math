@@ -1,0 +1,5 @@
+<map id="inheritancea6e466e8cb" name="inheritancea6e466e8cb">
+<area shape="rect" id="node1" href="api/Math.geometry.Circle.html#Math.geometry.Circle" target="_top" title="Circle, a subclass of Circular()" alt="" coords="125,5,197,31"/>
+<area shape="rect" id="node2" href="api/Math.geometry.Circular.html#Math.geometry.Circular" target="_top" title="Superclass for circular objects, like Circle() and Sphere()" alt="" coords="5,31,77,56"/>
+<area shape="rect" id="node3" href="api/Math.geometry.Sphere.html#Math.geometry.Sphere" target="_top" title="Sphere, a subclass of Circular()" alt="" coords="125,55,197,80"/>
+</map>

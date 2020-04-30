@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Radio Astronomy Software Tools &#8212; Math 0.9 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="allan_variance" href="api/Math.allan_variance.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/Math.allan_variance.html" title="allan_variance"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Math 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Radio Astronomy Software Tools</a><ul>
+<li><a class="reference internal" href="#module-Math">Math Package</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Math.Bin">Math.Bin Module</a><ul>
+<li><a class="reference internal" href="#id1">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Math.geometry">Math.geometry Module</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Math.least_squares">Math.least_squares Module</a><ul>
+<li><a class="reference internal" href="#id2">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Math.multigauss">Math.multigauss Module</a><ul>
+<li><a class="reference internal" href="#id3">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Math.statistics">Math.statistics Module</a><ul>
+<li><a class="reference internal" href="#id4">Functions</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api/Math.allan_variance.html"
+                        title="next chapter">allan_variance</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="radio-astronomy-software-tools">
+<h1>Radio Astronomy Software Tools<a class="headerlink" href="#radio-astronomy-software-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-Math">
+<span id="math-package"></span><h2>Math Package<a class="headerlink" href="#module-Math" title="Permalink to this headline">¶</a></h2>
+<p>Local mathematical functions in addition to the Python ‘math’ module.</p>
+<p>The smoothing functions are adapted from:
+<a class="reference external" href="http://www.swharden.com/blog/2008-11-17-linear-data-smoothing-in-python/">http://www.swharden.com/blog/2008-11-17-linear-data-smoothing-in-python/</a></p>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">acos</span></code></p></td>
+<td><p>Return the arc cosine (measured in radians) of x.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">acosh</span></code></p></td>
+<td><p>Return the inverse hyperbolic cosine of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.allan_variance.html#Math.allan_variance" title="Math.allan_variance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">allan_variance</span></code></a>(data)</p></td>
+<td><p>Computes Allan variance</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">asin</span></code></p></td>
+<td><p>Return the arc sine (measured in radians) of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">asinh</span></code></p></td>
+<td><p>Return the inverse hyperbolic sine of x.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">atan</span></code></p></td>
+<td><p>Return the arc tangent (measured in radians) of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">atan2</span></code></p></td>
+<td><p>Return the arc tangent (measured in radians) of y/x.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">atanh</span></code></p></td>
+<td><p>Return the inverse hyperbolic tangent of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.binary_to_decimal.html#Math.binary_to_decimal" title="Math.binary_to_decimal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binary_to_decimal</span></code></a>(string)</p></td>
+<td><p>Converts a binary string, sign bit then msb on left, to an integer.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ceil</span></code></p></td>
+<td><p>Return the ceiling of x as an Integral.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copysign</span></code></p></td>
+<td><p>Return a float with the magnitude (absolute value) of x but the sign of y.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cos</span></code></p></td>
+<td><p>Return the cosine of x (measured in radians).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cosh</span></code></p></td>
+<td><p>Return the hyperbolic cosine of x.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.decimal_to_binary.html#Math.decimal_to_binary" title="Math.decimal_to_binary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimal_to_binary</span></code></a>(integer[, nbits, grouped])</p></td>
+<td><p>Converts integer to binary string of length nbits, sign bit and then m.s.b.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">degrees</span></code></p></td>
+<td><p>Convert angle x from radians to degrees.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">erf</span></code></p></td>
+<td><p>Error function at x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">erfc</span></code></p></td>
+<td><p>Complementary error function at x.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exp</span></code></p></td>
+<td><p>Return e raised to the power of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">expm1</span></code></p></td>
+<td><p>Return exp(x)-1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fabs</span></code></p></td>
+<td><p>Return the absolute value of the float x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">factorial</span></code></p></td>
+<td><p>Find x!.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floor</span></code></p></td>
+<td><p>Return the floor of x as an Integral.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fmod</span></code></p></td>
+<td><p>Return fmod(x, y), according to platform C.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">frexp</span></code></p></td>
+<td><p>Return the mantissa and exponent of x, as pair (m, e).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fsum</span></code></p></td>
+<td><p>Return an accurate floating point sum of values in the iterable seq.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma</span></code></p></td>
+<td><p>Gamma function at x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.gaussian.html#Math.gaussian" title="Math.gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussian</span></code></a>(x, mean, stdev)</p></td>
+<td><p>Un-normalized gaussian</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gcd</span></code></p></td>
+<td><p>greatest common divisor of x and y</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.group_variance.html#Math.group_variance" title="Math.group_variance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_variance</span></code></a>(data, n_data, n_grps)</p></td>
+<td><p>Computes the variance of n_data points of data[], averaged in groups of n_grps and returns the variance for these groups</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hypot</span></code></p></td>
+<td><p>Return the Euclidean distance, sqrt(x*x + y*y).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isclose</span></code></p></td>
+<td><p>Determine whether two floating point numbers are close in value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isfinite</span></code></p></td>
+<td><p>Return True if x is neither an infinity nor a NaN, and False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isinf</span></code></p></td>
+<td><p>Return True if x is a positive or negative infinity, and False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isnan</span></code></p></td>
+<td><p>Return True if x is a NaN (not a number), and False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ldexp</span></code></p></td>
+<td><p>Return x * (2**i).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">lgamma</span></code></p></td>
+<td><p>Natural logarithm of absolute value of Gamma function at x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(x, [base=math.e])</p></td>
+<td><p>Return the logarithm of x to the given base.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log10</span></code></p></td>
+<td><p>Return the base 10 logarithm of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log1p</span></code></p></td>
+<td><p>Return the natural logarithm of 1+x (base e).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log2</span></code></p></td>
+<td><p>Return the base 2 logarithm of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">modf</span></code></p></td>
+<td><p>Return the fractional and integer parts of x.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.normalized_gaussian.html#Math.normalized_gaussian" title="Math.normalized_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalized_gaussian</span></code></a>(x, mean, stdev)</p></td>
+<td><p>gaussian function whose area under the curve is unity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pow</span></code></p></td>
+<td><p>Return x**y (x to the power of y).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.power_of_2_ge.html#Math.power_of_2_ge" title="Math.power_of_2_ge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">power_of_2_ge</span></code></a>(number)</p></td>
+<td><p>This finds the integer greater than ‘number’ which is a power of two.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">radians</span></code></p></td>
+<td><p>Convert angle x from degrees to radians.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remainder</span></code></p></td>
+<td><p>Difference between x and the closest integer multiple of y.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.scaled_gaussian.html#Math.scaled_gaussian" title="Math.scaled_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled_gaussian</span></code></a>(x, mean, fwhm)</p></td>
+<td><p>returns a normalized gauusian’s value at x, given the mean and full width at half maximam</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sin</span></code></p></td>
+<td><p>Return the sine of x (measured in radians).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sinh</span></code></p></td>
+<td><p>Return the hyperbolic sine of x.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.smoothList.html#Math.smoothList" title="Math.smoothList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothList</span></code></a>(datalist[, degree])</p></td>
+<td><p>Smooth a list of numbers by averaging ‘degree’ samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.smoothListGaussian.html#Math.smoothListGaussian" title="Math.smoothListGaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothListGaussian</span></code></a>(datalist[, degree])</p></td>
+<td><p>Gaussian data smoothing function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.smoothListTriangle.html#Math.smoothListTriangle" title="Math.smoothListTriangle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smoothListTriangle</span></code></a>(datalist[, degree])</p></td>
+<td><p>Smooth a list of numbers by convolving with a triangle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.solid_angle.html#Math.solid_angle" title="Math.solid_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">solid_angle</span></code></a>(angle)</p></td>
+<td><p>Solid angle for a circular pattern</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sqrt</span></code></p></td>
+<td><p>Return the square root of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tan</span></code></p></td>
+<td><p>Return the tangent of x (measured in radians).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tanh</span></code></p></td>
+<td><p>Return the hyperbolic tangent of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">trunc</span></code></p></td>
+<td><p>Truncates the Real x to the nearest Integral toward 0.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Math.Bin">
+<span id="math-bin-module"></span><h2>Math.Bin Module<a class="headerlink" href="#module-Math.Bin" title="Permalink to this headline">¶</a></h2>
+<p>Binary operations</p>
+<dl>
+<dt>Example::</dt><dd><p>In [1]: import Math.Bin as B</p>
+<p>In [2]: B.setbit(0,12)
+Out[2]: 4096</p>
+<p>In [3]: “%x” % B.setbit(0,12)
+Out[3]: ‘1000’</p>
+</dd>
+</dl>
+<div class="section" id="id1">
+<h3>Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.Bin.bitcnt.html#Math.Bin.bitcnt" title="Math.Bin.bitcnt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bitcnt</span></code></a>(val)</p></td>
+<td><p>Counts the number of set bits in the binary value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.Bin.clrbit.html#Math.Bin.clrbit" title="Math.Bin.clrbit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clrbit</span></code></a>(word, bit)</p></td>
+<td><p>Clear bit in word (set to 0)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.Bin.field_mask.html#Math.Bin.field_mask" title="Math.Bin.field_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_mask</span></code></a>(bits[, leftshift])</p></td>
+<td><p>Set a bit mask</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.Bin.get_field.html#Math.Bin.get_field" title="Math.Bin.get_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_field</span></code></a>(word[, mask])</p></td>
+<td><p>Extract a value from a range of bits (bit field)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.Bin.getbit.html#Math.Bin.getbit" title="Math.Bin.getbit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getbit</span></code></a>(word, bit)</p></td>
+<td><p>get the value of bit in word</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.Bin.reverse.html#Math.Bin.reverse" title="Math.Bin.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a>(x, n)</p></td>
+<td><p>Reverse the pattern</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.Bin.rol.html#Math.Bin.rol" title="Math.Bin.rol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rol</span></code></a>(val, r_bits, max_bits)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.Bin.ror.html#Math.Bin.ror" title="Math.Bin.ror"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ror</span></code></a>(val, r_bits, max_bits)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.Bin.set_field.html#Math.Bin.set_field" title="Math.Bin.set_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_field</span></code></a>(word, value[, mask])</p></td>
+<td><p>Set a value into a bit field</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.Bin.setbit.html#Math.Bin.setbit" title="Math.Bin.setbit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setbit</span></code></a>(word, bit)</p></td>
+<td><p>set bit in word to 1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Math.geometry">
+<span id="math-geometry-module"></span><h2>Math.geometry Module<a class="headerlink" href="#module-Math.geometry" title="Permalink to this headline">¶</a></h2>
+<p>Classes for properties of geometrical objects.</p>
+<p>This isn’t exactly difficult math but it illustrates object-oriented
+programming pretty well.</p>
+<p>For simple calculations it isn’t necessary to create instances of the objects.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">Math.geometry</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">Sphere</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span><span class="o">.</span><span class="n">area</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mf">452389342.11693019</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">Sphere</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span><span class="o">.</span><span class="n">horizon</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="mf">10.95443745708116</span>
+</pre></div>
+</div>
+<p>Sometimes, an instance is useful though:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">s</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">horizon</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">visible_fraction</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="n">s</span><span class="o">.</span><span class="n">area</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">visible_fraction</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="mf">0.023242630385487552</span>
+</pre></div>
+</div>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.geometry.Circle.html#Math.geometry.Circle" title="Math.geometry.Circle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Circle</span></code></a>(radius)</p></td>
+<td><p>Circle, a subclass of Circular()</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.geometry.Circular.html#Math.geometry.Circular" title="Math.geometry.Circular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Circular</span></code></a>(radius)</p></td>
+<td><p>Superclass for circular objects, like Circle() and Sphere()</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.geometry.Sphere.html#Math.geometry.Sphere" title="Math.geometry.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a>(radius)</p></td>
+<td><p>Sphere, a subclass of Circular()</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-inheritance-diagram">
+<h3>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h3>
+<div class="graphviz"><img src="_images/inheritance-d93e55f5c3fc944f46a427850d590fd196564ebc.png" alt="Inheritance diagram of Math.geometry.Circle, Math.geometry.Circular, Math.geometry.Sphere" usemap="#inheritancea6e466e8cb" class="inheritance graphviz" /></div>
+<map id="inheritancea6e466e8cb" name="inheritancea6e466e8cb">
+<area shape="rect" id="node1" href="api/Math.geometry.Circle.html#Math.geometry.Circle" target="_top" title="Circle, a subclass of Circular()" alt="" coords="125,5,197,31"/>
+<area shape="rect" id="node2" href="api/Math.geometry.Circular.html#Math.geometry.Circular" target="_top" title="Superclass for circular objects, like Circle() and Sphere()" alt="" coords="5,31,77,56"/>
+<area shape="rect" id="node3" href="api/Math.geometry.Sphere.html#Math.geometry.Sphere" target="_top" title="Sphere, a subclass of Circular()" alt="" coords="125,55,197,80"/>
+</map></div>
+</div>
+<div class="section" id="module-Math.least_squares">
+<span id="math-least-squares-module"></span><h2>Math.least_squares Module<a class="headerlink" href="#module-Math.least_squares" title="Permalink to this headline">¶</a></h2>
+<p>leastsq_support - short-cuts for scipy.optimize.leastsq</p>
+<div class="section" id="id2">
+<h3>Functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">factorial</span></code></p></td>
+<td><p>Find x!.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.least_squares.fit_gaussian.html#Math.least_squares.fit_gaussian" title="Math.least_squares.fit_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_gaussian</span></code></a>(error_function, initial_guess, x, y)</p></td>
+<td><p>Invoke least squares fit to a Gaussian function</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.least_squares.gaussian.html#Math.least_squares.gaussian" title="Math.least_squares.gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussian</span></code></a>(x, p)</p></td>
+<td><p>Gaussian function</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.least_squares.gaussian_error_function.html#Math.least_squares.gaussian_error_function" title="Math.least_squares.gaussian_error_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussian_error_function</span></code></a>(p, x, y)</p></td>
+<td><p>Difference between model and actual data</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">leastsq</span></code>(func, x0[, args, Dfun, full_output, …])</p></td>
+<td><p>Minimize the sum of squares of a set of equations.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(x, [base=math.e])</p></td>
+<td><p>Return the logarithm of x to the given base.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.least_squares.savitzky_golay.html#Math.least_squares.savitzky_golay" title="Math.least_squares.savitzky_golay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">savitzky_golay</span></code></a>(y, window_size, order[, …])</p></td>
+<td><p>Smooth (and optionally differentiate) data with a Savitzky-Golay filter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.least_squares.savitzky_golay_piecewise.html#Math.least_squares.savitzky_golay_piecewise" title="Math.least_squares.savitzky_golay_piecewise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">savitzky_golay_piecewise</span></code></a>(xvals, data[, …])</p></td>
+<td><p>In cyclic voltammetry, voltage (being the abcissa) changes like a triangle wave.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.least_squares.simple_gaussian.html#Math.least_squares.simple_gaussian" title="Math.least_squares.simple_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_gaussian</span></code></a>(x, p)</p></td>
+<td><p>un-normalized gaussian for fitting</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sqrt</span></code></p></td>
+<td><p>Return the square root of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.least_squares.st_dev.html#Math.least_squares.st_dev" title="Math.least_squares.st_dev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">st_dev</span></code></a>(width_half_max)</p></td>
+<td><p>Standard deviation from Gaussian full width at half maxiuam</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.least_squares.width_half_max.html#Math.least_squares.width_half_max" title="Math.least_squares.width_half_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width_half_max</span></code></a>(st_dev)</p></td>
+<td><p>Gaussian full width at half maximum from standard deviation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Math.multigauss">
+<span id="math-multigauss-module"></span><h2>Math.multigauss Module<a class="headerlink" href="#module-Math.multigauss" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>Functions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.multigauss.MMgauss.html#Math.multigauss.MMgauss" title="Math.multigauss.MMgauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MMgauss</span></code></a>(x, pos, std, *args)</p></td>
+<td><p>A form of ‘multigauss’ that curfit can use.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.multigauss.gaussian.html#Math.multigauss.gaussian" title="Math.multigauss.gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussian</span></code></a>(x, mean, stdev)</p></td>
+<td><p>Un-normalized gaussian</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.multigauss.multigaussian.html#Math.multigauss.multigaussian" title="Math.multigauss.multigaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multigaussian</span></code></a>(x, pos, std, *args)</p></td>
+<td><p>Returns the value of the sum of multiple Gaussians.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Math.statistics">
+<span id="math-statistics-module"></span><h2>Math.statistics Module<a class="headerlink" href="#module-Math.statistics" title="Permalink to this headline">¶</a></h2>
+<p>Allan variance</p>
+<p>not yet tested since bug fixes - tbhk 2007-10-12</p>
+<div class="section" id="id4">
+<h3>Functions<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Math.statistics.allan_variance.html#Math.statistics.allan_variance" title="Math.statistics.allan_variance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">allan_variance</span></code></a>(data)</p></td>
+<td><p>Computes Allan variance</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Math.statistics.group_variance.html#Math.statistics.group_variance" title="Math.statistics.group_variance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_variance</span></code></a>(data, n_data, n_grps)</p></td>
+<td><p>Computes the variance of n_data points of data[], averaged in groups of n_grps and returns the variance for these groups</p></td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/Math.allan_variance.html" title="allan_variance"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Math 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, T. B. H. Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

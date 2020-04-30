@@ -123,7 +123,7 @@ class _EuclidMetaclass(type):
         else:
             if '__slots__' in dct:
                 del dct['__slots__']
-            return types.ClassType.__new__(types.ClassType, name, bases, dct)
+            return types.ClassType.__new__(type, name, bases, dct)
 
     @classmethod
     def _create_getstate(cls, slots):
@@ -141,7 +141,7 @@ class _EuclidMetaclass(type):
         """
         """
         def __setstate__(self, state):
-            for name, value in state.items():
+            for name, value in list(state.items()):
                 setattr(self, name, value)
         return __setstate__
 
@@ -256,7 +256,7 @@ class Vector2(object):
         """
         return not self.__eq__(other)
 
-    def __nonzero__(self):
+    def __bool__(self):
         """
         Test if this instance (self) is non-zero
         """
@@ -296,7 +296,7 @@ class Vector2(object):
             return tuple([(self.x, self.y)['xy'.index(c)] \
                           for c in name])
         except ValueError:
-            raise AttributeError, name
+            raise AttributeError(name)
 
     if _enable_swizzle_set:
         def __setattr__(self, name, value):
@@ -319,7 +319,7 @@ class Vector2(object):
                         l['xy'.index(c)] = v
                     self.x, self.y = l
                 except ValueError:
-                    raise AttributeError, name
+                    raise AttributeError(name)
 
     def __add__(self, other):
         """
@@ -417,7 +417,7 @@ class Vector2(object):
 
         @return: Vector2
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector2(self.x * other,
                        self.y * other)
 
@@ -432,7 +432,7 @@ class Vector2(object):
 
         @return: self
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         self.x *= other
         self.y *= other
         return self
@@ -441,7 +441,7 @@ class Vector2(object):
         """
         Invoked for "/"; divide self by a scalar
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector2(operator.div(self.x, other),
                        operator.div(self.y, other))
 
@@ -452,7 +452,7 @@ class Vector2(object):
         
         Returns a Vector2 with elements of other divided by each element of self.
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector2(operator.div(other, self.x),
                        operator.div(other, self.y))
 
@@ -460,7 +460,7 @@ class Vector2(object):
         """
         Invoked for "//"; truncated division by other
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector2(operator.floordiv(self.x, other),
                        operator.floordiv(self.y, other))
 
@@ -469,7 +469,7 @@ class Vector2(object):
         """
         Invoked for "//"; truncated division of other by self.
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector2(operator.floordiv(other, self.x),
                        operator.floordiv(other, self.y))
 
@@ -477,7 +477,7 @@ class Vector2(object):
         """
         Division of self by other with remainder, even for integers
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector2(operator.truediv(self.x, other),
                        operator.truediv(self.y, other))
 
@@ -486,7 +486,7 @@ class Vector2(object):
         """
         Division of other by self with remainder, even for integers
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector2(operator.truediv(other, self.x),
                        operator.truediv(other, self.y))
     
@@ -671,7 +671,7 @@ class Vector3(object):
         """
         return not self.__eq__(other)
 
-    def __nonzero__(self):
+    def __bool__(self):
         """
         Test if this instance (self) is non-zero
         """
@@ -715,7 +715,7 @@ class Vector3(object):
             return tuple([(self.x, self.y, self.z)['xyz'.index(c)] \
                           for c in name])
         except ValueError:
-            raise AttributeError, name
+            raise AttributeError(name)
 
     if _enable_swizzle_set:
         def __setattr__(self, name, value):
@@ -738,7 +738,7 @@ class Vector3(object):
                         l['xyz'.index(c)] = v
                     self.x, self.y, self.z = l
                 except ValueError:
-                    raise AttributeError, name
+                    raise AttributeError(name)
 
 
     def __add__(self, other):
@@ -869,7 +869,7 @@ class Vector3(object):
                           self.y * other.y,
                           self.z * other.z)
         else: 
-            assert type(other) in (int, long, float)
+            assert type(other) in (int, int, float)
             return Vector3(self.x * other,
                            self.y * other,
                            self.z * other)
@@ -885,7 +885,7 @@ class Vector3(object):
 
         @return: self
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         self.x *= other
         self.y *= other
         self.z *= other
@@ -895,7 +895,7 @@ class Vector3(object):
         """
         Invoked for "/"; divide self by a scalar
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector3(operator.div(self.x, other),
                        operator.div(self.y, other),
                        operator.div(self.z, other))
@@ -907,7 +907,7 @@ class Vector3(object):
 
         Returns a Vector3 with elements of other divided by each element of self.
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector3(operator.div(other, self.x),
                        operator.div(other, self.y),
                        operator.div(other, self.z))
@@ -916,7 +916,7 @@ class Vector3(object):
         """
         Invoked for "//"; truncated division by other
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector3(operator.floordiv(self.x, other),
                        operator.floordiv(self.y, other),
                        operator.floordiv(self.z, other))
@@ -926,7 +926,7 @@ class Vector3(object):
         """
         Invoked for "//"; truncated division of other by self.
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector3(operator.floordiv(other, self.x),
                        operator.floordiv(other, self.y),
                        operator.floordiv(other, self.z))
@@ -935,7 +935,7 @@ class Vector3(object):
         """
         Division of self by other with remainder, even for integers
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector3(operator.truediv(self.x, other),
                        operator.truediv(self.y, other),
                        operator.truediv(self.z, other))
@@ -945,7 +945,7 @@ class Vector3(object):
         """
         Division of other by self with remainder, even for integers
         """
-        assert type(other) in (int, long, float)
+        assert type(other) in (int, int, float)
         return Vector3(operator.truediv(other, self.x),
                        operator.truediv(other, self.y),
                        operator.truediv(other, self.z))
@@ -2702,12 +2702,12 @@ class Geometry:
     Much maths thanks to Paul Bourke, http://paulbourke.net/geometry/
     """
     def _connect_unimplemented(self, other):
-        raise AttributeError, 'Cannot connect %s to %s' % \
-            (self.__class__, other.__class__)
+        raise AttributeError('Cannot connect %s to %s' % \
+            (self.__class__, other.__class__))
 
     def _intersect_unimplemented(self, other):
-        raise AttributeError, 'Cannot intersect %s and %s' % \
-            (self.__class__, other.__class__)
+        raise AttributeError('Cannot intersect %s and %s' % \
+            (self.__class__, other.__class__))
 
     _intersect_point2 = _intersect_unimplemented
     _intersect_line2 = _intersect_unimplemented
@@ -2833,18 +2833,18 @@ class Line2(Geometry):
                 self.p = args[0].copy()
                 self.v = args[1].copy()
             else:
-                raise AttributeError, '%r' % (args,)
+                raise AttributeError('%r' % (args,))
         elif len(args) == 1:
             if isinstance(args[0], Line2):
                 self.p = args[0].p.copy()
                 self.v = args[0].v.copy()
             else:
-                raise AttributeError, '%r' % (args,)
+                raise AttributeError('%r' % (args,))
         else:
-            raise AttributeError, '%r' % (args,)
+            raise AttributeError('%r' % (args,))
         
         if not self.v:
-            raise AttributeError, 'Line has zero-length vector'
+            raise AttributeError('Line has zero-length vector')
 
     def __copy__(self):
         """
@@ -3693,15 +3693,15 @@ class Line3:
                 self.p = args[0].copy()
                 self.v = args[1].copy()
             else:
-                raise AttributeError, '%r' % (args,)
+                raise AttributeError('%r' % (args,))
         elif len(args) == 1:
             if isinstance(args[0], Line3):
                 self.p = args[0].p.copy()
                 self.v = args[0].v.copy()
             else:
-                raise AttributeError, '%r' % (args,)
+                raise AttributeError('%r' % (args,))
         else:
-            raise AttributeError, '%r' % (args,)
+            raise AttributeError('%r' % (args,))
         
         # XXX This is annoying.
         #if not self.v:
@@ -3975,14 +3975,14 @@ class Plane:
                 self.n = args[0].normalized()
                 self.k = args[1]
             else:
-                raise AttributeError, '%r' % (args,)
+                raise AttributeError('%r' % (args,))
 
         else:
-            raise AttributeError, '%r' % (args,)
+            raise AttributeError('%r' % (args,))
         module_logger.debug("normal is null:",(self.n == Vector3(0,0,0)))
         #if not self.n:  <<< doesn't work
         if self.n.__nonzero__() == False:
-            raise AttributeError, 'Points on plane are colinear'
+            raise AttributeError('Points on plane are colinear')
 
     def __copy__(self):
         """

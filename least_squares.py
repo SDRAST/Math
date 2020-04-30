@@ -2,10 +2,13 @@
 """
 leastsq_support - short-cuts for scipy.optimize.leastsq
 """
+import logging
 import numpy as np
 
-from math import factorial
+from math import factorial, log, pi, sqrt
 from scipy.optimize import leastsq
+
+logger = logging.getLogger(__name__)
 
 def gaussian(x, p):
   """
@@ -14,8 +17,15 @@ def gaussian(x, p):
   @param x : variable
   @param p : parameters [height, center, sigma]
   """
-  return p[0]*(1/sqrt(2*pi*(p[2]**2)))*exp(-(x-p[1])**2/(2*p[2]**2))
+  return p[0] * (1/np.sqrt(2*pi*(p[2]**2))) * np.exp(-(x-p[1])**2/(2*p[2]**2))
 
+def simple_gaussian(x, p):
+  """
+  un-normalized gaussian for fitting
+  """
+  stdev = st_dev(p[2])
+  return p[0] * np.exp(-(x-p[1])**2/(stdev)**2)
+  
 
 def gaussian_error_function(p, x, y):
   """
@@ -32,7 +42,7 @@ def gaussian_error_function(p, x, y):
 
   @return: numpy array
   """
-  return (gaussian(x,p) - y)
+  return (simple_gaussian(x,p) - y)
 
 def width_half_max(st_dev):
   """
@@ -74,24 +84,27 @@ def fit_gaussian(error_function, initial_guess, x, y):
 
   @return: (list of parameters, list of formal errors)
   """
+  logger.debug("fit_gaussian: initial guess: %s", initial_guess)
+  logger.debug("fit_gaussian: x = %s", x)
+  logger.debug("fit_gaussian: y = %s", y)
   response = leastsq(error_function,
                      x0 = initial_guess,
                      args = (x,y),
                      full_output = True)
   pars, covar, info, msg, err_code = response
-  if diag:
-    print "Best fit parameter values:",pars
-    print "Normalized covariance matrix:\n",covar
-  std_dev = sqrt(mean(info['fvec']**2))
+  logger.debug("fit_gaussian: best fit parameter values: %s",pars)
+  logger.debug("fit_gaussian: normalized covariance matrix: %s",covar)
+  logger.debug("fit_gaussian: final function value: %s\n", info['fvec'])
+  #std_dev = sqrt(mean(info['fvec']**2))
+  std_dev = sqrt((info['fvec']**2).mean())
   err = [sqrt(covar[0,0])*std_dev,
          sqrt(covar[1,1])*std_dev,
          sqrt(covar[2,2])*std_dev]
-  if diag:
-    print "Fitted height =",pars[0],"+/-",err[0]
-    print "Fitted offset =",pars[1],"+/-",err[1]
-    print "Fitted st.dev.=",pars[2],"+/-",err[2]
-    print "Number of iterations:",info['nfev']
-    print "Residual standard deviation:",std_dev
+  logger.debug("fit_gaussian: fitted height = %f+/-%f",pars[0],err[0])
+  logger.debug("fit_gaussian: fitted offset = %f+/-%f",pars[1],err[1])
+  logger.debug("fit_gaussian: fitted st.dev.= %f+/-%f",pars[2],err[2])
+  logger.debug("fit_gaussian: number of iterations: %s",info['nfev'])
+  logger.debug("fit_gaussian: residual standard deviation: %f",std_dev)
   return pars,err
 
 def savitzky_golay(y, window_size, order, deriv=0, rate=1):
@@ -151,13 +164,13 @@ def savitzky_golay(y, window_size, order, deriv=0, rate=1):
     try:
         window_size = np.abs(np.int(window_size))
         order = np.abs(np.int(order))
-    except ValueError, msg:
+    except ValueError as msg:
         raise ValueError("window_size and order have to be of type int")
     if window_size % 2 != 1 or window_size < 1:
         raise TypeError("window_size size must be a positive odd number")
     if window_size < order + 2:
         raise TypeError("window_size is too small for the polynomials order")
-    order_range = range(order+1)
+    order_range = list(range(order+1))
     half_window = (window_size -1) // 2
     # precompute coefficients
     b = np.mat([[k**i for i in order_range] for k in range(-half_window, half_window+1)])

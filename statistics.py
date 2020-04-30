@@ -33,6 +33,7 @@ def allan_variance(data):
    Computes Allan variance
    
    Definition of variance::
+   
                                2
             sum (sample - mean)
      var =  --------------------
