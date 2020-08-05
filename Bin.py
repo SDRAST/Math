@@ -175,15 +175,16 @@ def set_field(word, value, mask=255):
   return new_word + value
 
 # from https://www.falatic.com/index.php/108/python-and-bitwise-rotation
-# Rotate left: 0b1001 --> 0b0011
+
 rol = lambda val, r_bits, max_bits: \
     (val << r_bits%max_bits) & (2**max_bits-1) | \
     ((val & (2**max_bits-1)) >> (max_bits-(r_bits%max_bits)))
- 
-# Rotate right: 0b1001 --> 0b1100
+rol.__doc__ = """Rotate left: 0b1001 --> 0b0011"""
+
 ror = lambda val, r_bits, max_bits: \
     ((val & (2**max_bits-1)) >> r_bits%max_bits) | \
     (val << (max_bits-(r_bits%max_bits)) & (2**max_bits-1))
+ror.__doc__ = """Rotate right: 0b1001 --> 0b1100"""
 
 def reverse(x, n):
     """
@@ -201,4 +202,41 @@ def reverse(x, n):
     for i in range(n):
         if (x >> i) & 1: result |= 1 << (n - 1 - i)
     return result
+
+def bin2sint(bin):
+    """
+    binary to signed integer
+    
+    A digitizer only tests for > or < some level. This makes a 1s-complement
+    notation preferred.  The -0 value is avoided. >0 is represented as 00000000
+    and <0 by 11111111.  So then::
+
+      In [11]: bin2sint('00000000') 
+      Out[11]: 1
+      In [12]: bin2sint('11111111')
+      Out[12]: -1
+
+      In [13]: bin2sint('00000001')
+      Out[13]: 3
+      In [14]: bin2sint('11111110') 
+      Out[14]: -3
+
+      In [15]: bin2sint('00000011')
+      Out[15]: 7
+      In [16]: bin2sint('11111100')
+      Out[16]: -7
+      
+      In [17]: bin2sint('10000000') 
+      Out[17]: -255
+      In [18]: bin2sint('01111111')
+      Out[18]: 255
+    """
+    if bin[0] == '1':
+        # Negative
+        integer = -(2**(len(bin)-1) - int(bin[1:], 2))
+    else:
+        integer = int(bin, 2)
+
+    integer = int(2*integer + 1)
+    return integer
 
